@@ -1,0 +1,147 @@
+{
+  "id": "57de0e09-72e2-4d77-bd45-7d323afb4923",
+  "version": "2.0",
+  "name": "lesson1",
+  "url": "https://www.shutterstock.com",
+  "tests": [{
+    "id": "47cda833-5dee-49e6-9cbe-118d64533f70",
+    "name": "login",
+    "commands": [{
+      "id": "2563bc65-f7d0-4be1-ba6c-7d62d6006e93",
+      "comment": "",
+      "command": "open",
+      "target": "/ru/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "12f73247-a501-41f2-9cc5-2e8310974df3",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1342x1020",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "04b3dff8-91dd-424e-b09c-052d3049ff3d",
+      "comment": "",
+      "command": "click",
+      "target": "//a[@data-automation=\"loginButton\"]",
+      "targets": [
+        ["css=.jss1267 > .MuiButton-label", "css:finder"],
+        ["xpath=//div[@id='__next']/div[4]/header/div/div[3]/a/span", "xpath:idRelative"],
+        ["xpath=//div[3]/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'Войти')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c6b584d7-a2e4-4dd8-992c-80b8006bc17b",
+      "comment": "",
+      "command": "type",
+      "target": "//input[@name = \"username\"]",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.o_input_theme_filled", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/main/div/div/div/div/div/form/div[2]/span/div[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "DenisAutotest@yandex.ru"
+    }, {
+      "id": "9de03cce-723d-4136-89d6-f71969cf2d6b",
+      "comment": "",
+      "command": "type",
+      "target": "//input[@name = \"password\"]",
+      "targets": [
+        ["id=input_password_visibility-off", "id"],
+        ["name=password", "name"],
+        ["css=#input_password_visibility-off", "css:finder"],
+        ["xpath=//input[@id='input_password_visibility-off']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/main/div/div/div/div/div/form/div[2]/span[2]/div[2]/input", "xpath:idRelative"],
+        ["xpath=//span[2]/div[2]/input", "xpath:position"]
+      ],
+      "value": "AutoUI2022"
+    }, {
+      "id": "84751398-1345-4fd3-9a95-0fa6b81e1319",
+      "comment": "",
+      "command": "click",
+      "target": "//button[@data-automation = \"submit-button\"]",
+      "targets": [
+        ["css=.o_button_theme_primary", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div/main/div/div/div/div/div/form/div[2]/div/span/button", "xpath:idRelative"],
+        ["xpath=//span/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Войти')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "179183d5-5510-445a-beec-2b528b16b622",
+    "name": "createCollection",
+    "commands": [{
+      "id": "db12e345-897a-4333-a8f1-54b0538ea3f1",
+      "comment": "",
+      "command": "open",
+      "target": "/ru/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9cd9744c-85c8-47b1-82c9-ab399d9e7486",
+      "comment": "",
+      "command": "click",
+      "target": "//button/span/div[@data-automation=\"user_Avatar\"]",
+      "targets": [
+        ["css=.MuiAvatar-root > .MuiSvgIcon-root", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "fea05a03-9424-447e-aa9a-e233dd891b11",
+      "comment": "",
+      "command": "click",
+      "target": "//a[@data-automation=\"ProfileDrawer_CollectionsButton\"]",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e5ed77ff-3443-4b06-8f70-4403acd3e806",
+      "comment": "",
+      "command": "click",
+      "target": "//button[@data-automation = \"CollectionsTopNav_action_Создать\"]",
+      "targets": [
+        ["css=.oc_i_2206f", "css:finder"],
+        ["xpath=(//button[@type='button'])[8]", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2128b36a-ebe4-4110-bb07-93da30e6ae32",
+      "comment": "",
+      "command": "type",
+      "target": "//input[@data-automation = \"CollectionTitleInputDialog_input-active\"]",
+      "targets": [
+        ["css=.o_input_theme_filled", "css:finder"],
+        ["xpath=//input[@value='test']", "xpath:attributes"],
+        ["xpath=//section/div/div/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "f9ac8079-34c3-4696-9ce0-efb45a1fec88",
+      "comment": "",
+      "command": "click",
+      "target": "//button[@data-automation=\"CollectionTitleInputDialog_submit_button-active\"]",
+      "targets": [
+        ["css=.oc_i_2206f", "css:finder"],
+        ["xpath=(//button[@type='button'])[8]", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "bfb87f51-dd9a-4355-b6bb-a6aec6dfe7c3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["47cda833-5dee-49e6-9cbe-118d64533f70"]
+  }],
+  "urls": ["https://www.shutterstock.com/"],
+  "plugins": []
+}
