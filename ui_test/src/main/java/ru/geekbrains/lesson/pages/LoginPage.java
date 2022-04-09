@@ -1,5 +1,6 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,12 +15,13 @@ public class LoginPage extends BaseView {
     private WebElement inputFieldPassword;
 
     @FindBy(xpath = "//button[@type=\"submit\"]")
-    public WebElement submitButton;
+    private WebElement submitButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
     }
 
+    @Step("Ввод логина и пароля. Нажатие кнопки логина.")
     public MainPage login(String email, String password){
         webDriverWait.until(ExpectedConditions.visibilityOf(inputFieldUsernameOrEmail));
         inputFieldUsernameOrEmail.sendKeys(email);

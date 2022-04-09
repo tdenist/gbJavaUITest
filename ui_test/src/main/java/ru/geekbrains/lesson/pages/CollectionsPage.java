@@ -1,5 +1,6 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,11 +41,13 @@ public class CollectionsPage extends BaseView {
         super(driver);
     }
 
+    @Step("Нажать на кнопку \"Создать\"")
     public DialogFrame clickCreateButton(){
         createButton.click();
         return new DialogFrame(driver);
     }
 
+    @Step("Нажать на кнопку ... для вызова меню у коллекции")
     public CollectionsPage clickCollectionDropdownMenuButton(){
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionsGridLocator)));
         collectionsInGridList
@@ -54,17 +57,20 @@ public class CollectionsPage extends BaseView {
         return new CollectionsPage(driver);
     }
 
+    @Step("Выбрать пункт меню")
     public DialogFrame selectCollectionDropdownMenuOption(String menuOption){
         collectionDropdownMenuButton.click();
         collectionDropdownMenu.stream().filter(o -> o.getText().contains(menuOption)).findFirst().get().click();
         return new DialogFrame(driver);
     }
 
+    @Step("Посчитать количество коллекций")
     public int getCollectionsCount(){
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionsGridLocator)));
         return collectionsInGridList.size();
     }
 
+    @Step("Проверить отображение всплывающего сообщения")
     public CollectionsPage checkSnackbarIsDisplay(){
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionPageSnackbarLocator)));
         assertThat(driver.findElement(By.xpath(collectionPageSnackbarLocator)), isDisplayed());

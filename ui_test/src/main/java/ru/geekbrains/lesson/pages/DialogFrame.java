@@ -1,6 +1,6 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
-import org.jetbrains.annotations.NotNull;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,16 +20,19 @@ public class DialogFrame extends BaseView{
         super(driver);
     }
 
+    @Step("Ввести название создаваемой коллекции")
     public DialogFrame inputCollectionName(String text){
         inputFieldCollectionName.sendKeys(text);
         return new DialogFrame(driver);
     }
 
+    @Step("Нажать на кнопку создания коллекции")
     public CollectionsPage clickCreateCollectionButton(){
         createCollectionButton.click();
         return new CollectionsPage(driver);
     }
 
+    @Step("Нажать на кнопку удаления коллекции")
     public CollectionsPage clickDeleteCollectionButton(){
        deleteCollectionButton.click();
         return new CollectionsPage(driver);

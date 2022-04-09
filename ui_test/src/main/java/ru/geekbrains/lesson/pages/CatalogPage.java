@@ -1,5 +1,6 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ public class CatalogPage extends BaseView {
         super(driver);
     }
 
+    @Step("Нажать кнопку \"Коллекции\"")
     public CollectionsPage clickCollectionsButton(){
         webDriverWait.until(ExpectedConditions.visibilityOf(collectionsButton));
         collectionsButton.click();

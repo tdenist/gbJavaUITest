@@ -1,4 +1,4 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;

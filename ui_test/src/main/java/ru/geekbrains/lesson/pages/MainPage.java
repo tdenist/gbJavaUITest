@@ -1,5 +1,6 @@
-package ru.geekbrains.lesson;
+package ru.geekbrains.lesson.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,11 +18,13 @@ public class MainPage extends BaseView {
         super(driver);
     }
 
+    @Step("Клик на иконку логина")
     public LoginPage clickLoginButton(){
         loginButton.click();
         return new LoginPage(driver);
     }
 
+    @Step("Нажать кнопку \"Каталог\"")
     public CatalogPage clickCatalogButton(){
         webDriverWait.until(ExpectedConditions.visibilityOf(catalogButton));
         catalogButton.click();
