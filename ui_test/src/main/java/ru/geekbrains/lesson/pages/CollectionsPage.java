@@ -1,18 +1,16 @@
 package ru.geekbrains.lesson.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.List;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.page;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.yandex.qatools.htmlelements.matchers.WebElementMatchers.isDisplayed;
-
-public class CollectionsPage extends BaseView {
+public class CollectionsPage {
 
     private final static String collectionsGridLocator = "//div[@data-automation=\"StandardGrid_content\"]/div";
 
@@ -22,58 +20,58 @@ public class CollectionsPage extends BaseView {
 
     private final static String collectionPageSnackbarLocator = "//div[@data-automation = \"CollectionPage_snackbar\"]";
 
-    @FindBy(xpath = collectionsGridLocator)
-    private List<WebElement> collectionsInGridList;
+    private ElementsCollection collectionsInGridList = $$(By.xpath(collectionsGridLocator));
 
-    @FindBy(xpath = collectionDropdownMenuButtonLocator)
-    private WebElement collectionDropdownMenuButton;
+    private SelenideElement collectionDropdownMenuButton = $(By.xpath(collectionDropdownMenuButtonLocator));
 
-    @FindBy(xpath = collectionDropdownMenuListLocator)
-    private List<WebElement> collectionDropdownMenu;
+    private ElementsCollection collectionDropdownMenu = $$(By.xpath(collectionDropdownMenuListLocator));
 
-    @FindBy(xpath = "//button[@data-track-label=\"createCollectionIcon\"]")
-    private WebElement createButton;
+    private SelenideElement createButton = $(By.xpath("//button[@data-track-label=\"createCollectionIcon\"]"));
 
-    @FindBy(xpath = collectionPageSnackbarLocator)
-    private WebElement collectionPageSnackbar;
-
-    public CollectionsPage(WebDriver driver) {
-        super(driver);
-    }
+    private SelenideElement collectionPageSnackbar = $(By.xpath(collectionPageSnackbarLocator));
 
     @Step("Нажать на кнопку \"Создать\"")
     public DialogFrame clickCreateButton(){
         createButton.click();
-        return new DialogFrame(driver);
+        return page(DialogFrame.class);
     }
 
     @Step("Нажать на кнопку ... для вызова меню у коллекции")
     public CollectionsPage clickCollectionDropdownMenuButton(){
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionsGridLocator)));
         collectionsInGridList
                 .get(1)
                 .findElement(By.xpath(collectionDropdownMenuButtonLocator))
                 .click();
-        return new CollectionsPage(driver);
+        return page(CollectionsPage.class);
     }
 
     @Step("Выбрать пункт меню")
     public DialogFrame selectCollectionDropdownMenuOption(String menuOption){
-        collectionDropdownMenuButton.click();
-        collectionDropdownMenu.stream().filter(o -> o.getText().contains(menuOption)).findFirst().get().click();
-        return new DialogFrame(driver);
+        collectionDropdownMenuButton.hover();
+        /*
+        actions
+                .moveToElement(collectionDropdownMenuButton)
+                .click(collectionDropdownMenuButton)
+                .build().perform();
+         */
+        collectionDropdownMenu.findBy(Condition.text(menuOption)).click();
+        /*
+        actions
+                .moveToElement(collectionDropdownMenu.stream().filter(o -> o.getText().contains(menuOption)).findFirst().get())
+                .click(collectionDropdownMenu.stream().filter(o -> o.getText().contains(menuOption)).findFirst().get())
+                .build().perform();
+         */
+        return page(DialogFrame.class);
     }
 
     @Step("Посчитать количество коллекций")
     public int getCollectionsCount(){
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionsGridLocator)));
         return collectionsInGridList.size();
     }
 
     @Step("Проверить отображение всплывающего сообщения")
     public CollectionsPage checkSnackbarIsDisplay(){
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(collectionPageSnackbarLocator)));
-        assertThat(driver.findElement(By.xpath(collectionPageSnackbarLocator)), isDisplayed());
-        return new CollectionsPage(driver);
+        collectionPageSnackbar.shouldBe(Condition.visible);
+        return page(CollectionsPage.class);
     }
 }

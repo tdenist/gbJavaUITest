@@ -1,33 +1,27 @@
 package ru.geekbrains.lesson.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
 
-public class MainPage extends BaseView {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
-    @FindBy(xpath = "//a[@data-automation=\"loginButton\"]")
-    private WebElement loginButton;
+public class MainPage {
 
-    @FindBy(xpath = "//a[@data-automation=\"utility-bar_catalog\"]")
-    private WebElement catalogButton;
+    private SelenideElement loginButton = $(By.xpath("//a[@data-automation=\"loginButton\"]"));
 
-    public MainPage(WebDriver driver) {
-        super(driver);
-    }
+    private SelenideElement catalogButton = $(By.xpath("//a[@data-automation=\"utility-bar_catalog\"]"));
 
     @Step("Клик на иконку логина")
     public LoginPage clickLoginButton(){
         loginButton.click();
-        return new LoginPage(driver);
+        return page(LoginPage.class);
     }
 
     @Step("Нажать кнопку \"Каталог\"")
     public CatalogPage clickCatalogButton(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(catalogButton));
         catalogButton.click();
-        return new CatalogPage(driver);
+        return page(CatalogPage.class);
     }
 }

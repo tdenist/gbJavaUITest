@@ -1,32 +1,26 @@
 package ru.geekbrains.lesson.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class LoginPage extends BaseView {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
-    @FindBy(xpath = "//input[@data-test-id=\"email-input\"]")
-    private WebElement inputFieldUsernameOrEmail;
+public class LoginPage {
 
-    @FindBy(xpath = "//input[@data-test-id=\"password-input\"]")
-    private WebElement inputFieldPassword;
+    private SelenideElement inputFieldUsernameOrEmail = $(By.xpath("//input[@data-test-id=\"email-input\"]"));
 
-    @FindBy(xpath = "//button[@type=\"submit\"]")
-    private WebElement submitButton;
+    private SelenideElement inputFieldPassword = $(By.xpath("//input[@data-test-id=\"password-input\"]"));
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-    }
+    private SelenideElement submitButton = $(By.xpath("//button[@type=\"submit\"]"));
 
     @Step("Ввод логина и пароля. Нажатие кнопки логина.")
     public MainPage login(String email, String password){
-        webDriverWait.until(ExpectedConditions.visibilityOf(inputFieldUsernameOrEmail));
         inputFieldUsernameOrEmail.sendKeys(email);
         inputFieldPassword.sendKeys(password);
         submitButton.click();
-        return new MainPage(driver);
+        return page(MainPage.class);
     }
 }

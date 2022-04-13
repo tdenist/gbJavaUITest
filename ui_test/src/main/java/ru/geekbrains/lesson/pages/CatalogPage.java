@@ -1,24 +1,19 @@
 package ru.geekbrains.lesson.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.By;
 
-public class CatalogPage extends BaseView {
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
-    @FindBy(xpath = "//a[@data-tour-stop=\"quick-access-collections\"]")
-    private WebElement collectionsButton;
+public class CatalogPage {
 
-    public CatalogPage(WebDriver driver) {
-        super(driver);
-    }
+    private SelenideElement collectionsButton = $(By.xpath("//a[@data-tour-stop=\"quick-access-collections\"]"));
 
     @Step("Нажать кнопку \"Коллекции\"")
     public CollectionsPage clickCollectionsButton(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(collectionsButton));
         collectionsButton.click();
-        return new CollectionsPage(driver);
+        return page(CollectionsPage.class);
     }
 }

@@ -1,40 +1,36 @@
 package ru.geekbrains.lesson.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-public class DialogFrame extends BaseView{
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
-    @FindBy(xpath = "//input[@data-automation=\"CollectionTitleInputDialog_input-active\"]")
-    private WebElement inputFieldCollectionName;
+public class DialogFrame {
 
-    @FindBy(xpath = "//button[@data-automation=\"CollectionTitleInputDialog_submit_button-active\"]")
-    private WebElement createCollectionButton;
+    private SelenideElement inputFieldCollectionName = $(By.xpath("//input[@data-automation=\"CollectionTitleInputDialog_input-active\"]"));
 
-    @FindBy(xpath = "//button[@data-automation=\"delete-dialog-submit\"]")
-    private WebElement deleteCollectionButton;
+    private SelenideElement createCollectionButton = $(By.xpath("//button[@data-automation=\"CollectionTitleInputDialog_submit_button-active\"]"));
 
-    public DialogFrame(WebDriver driver) {
-        super(driver);
-    }
+    private SelenideElement deleteCollectionButton = $(By.xpath("//button[@data-automation=\"delete-dialog-submit\"]"));
 
     @Step("Ввести название создаваемой коллекции")
     public DialogFrame inputCollectionName(String text){
         inputFieldCollectionName.sendKeys(text);
-        return new DialogFrame(driver);
+        return this;
     }
 
     @Step("Нажать на кнопку создания коллекции")
     public CollectionsPage clickCreateCollectionButton(){
         createCollectionButton.click();
-        return new CollectionsPage(driver);
+        return page(CollectionsPage.class);
     }
 
     @Step("Нажать на кнопку удаления коллекции")
     public CollectionsPage clickDeleteCollectionButton(){
        deleteCollectionButton.click();
-        return new CollectionsPage(driver);
+        return page(CollectionsPage.class);
     }
 }

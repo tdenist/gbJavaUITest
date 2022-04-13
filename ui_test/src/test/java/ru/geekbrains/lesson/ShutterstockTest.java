@@ -16,8 +16,7 @@ import ru.geekbrains.lesson.pages.CollectionsPage;
 import ru.geekbrains.lesson.pages.MainPage;
 
 @Feature("Работа с коллекциями")
-public class ShutterstockTest
-{
+public class ShutterstockTest {
     WebDriver driver;
 
     private static final String BASE_URL = "http://www.shutterstock.com";
@@ -37,9 +36,9 @@ public class ShutterstockTest
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         LogEntries logEntries = driver.manage().logs().get(LogType.BROWSER);
-        for (LogEntry log: logEntries) {
+        for (LogEntry log : logEntries) {
             Allure.addAttachment("Лог браузера:", log.getMessage());
         }
         driver.quit();
@@ -47,46 +46,44 @@ public class ShutterstockTest
 
     @Test
     @Story("Проверка создания коллекции")
-    void createCollectionTest(){
+    void createCollectionTest() {
 
         driver.get(BASE_URL);
 
         int beforeCollectionsCount =
-                new MainPage(driver)
-                .clickLoginButton()
-                .login(EMAIL,PASSWORD)
-                .clickCatalogButton()
-                .clickCollectionsButton()
-                .getCollectionsCount();
+                new MainPage()
+                        .clickLoginButton()
+                        .login(EMAIL, PASSWORD)
+                        .clickCatalogButton()
+                        .clickCollectionsButton()
+                        .getCollectionsCount();
 
         int afterCollectionsCount =
-                new CollectionsPage(driver)
-                .clickCreateButton()
-                .inputCollectionName("test")
-                .clickCreateCollectionButton()
-                .checkSnackbarIsDisplay()
-                .getCollectionsCount();
+                new CollectionsPage()
+                        .clickCreateButton()
+                        .inputCollectionName("test")
+                        .clickCreateCollectionButton()
+                        .checkSnackbarIsDisplay()
+                        .getCollectionsCount();
 
         Assertions.assertEquals(beforeCollectionsCount + 1, afterCollectionsCount);
     }
 
     @Test
     @Story("Проверка удаления коллекции")
-    void deleteCollectionTest(){
+    void deleteCollectionTest() {
 
         driver.get(BASE_URL);
 
 
-        int beforeCollectionsCount =
-                new MainPage(driver)
-                        .clickLoginButton()
-                        .login(EMAIL,PASSWORD)
-                        .clickCatalogButton()
-                        .clickCollectionsButton()
-                        .getCollectionsCount();
+        int beforeCollectionsCount = new MainPage()
+                .clickLoginButton()
+                .login(EMAIL, PASSWORD)
+                .clickCatalogButton()
+                .clickCollectionsButton()
+                .getCollectionsCount();
 
-        int afterCollectionsCount = new CollectionsPage(driver)
-                .clickCollectionDropdownMenuButton()
+        int afterCollectionsCount = new CollectionsPage()
                 .selectCollectionDropdownMenuOption("Удалить")
                 .clickDeleteCollectionButton()
                 .checkSnackbarIsDisplay()

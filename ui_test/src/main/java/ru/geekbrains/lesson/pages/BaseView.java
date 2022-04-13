@@ -9,13 +9,9 @@ import java.time.Duration;
 
 public class BaseView {
     WebDriver driver;
-    WebDriverWait webDriverWait;
-    Actions actions;
 
     public BaseView(WebDriver driver) {
         this.driver = driver;
-        webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        actions = new Actions(driver);
         PageFactory.initElements(driver, this);
     }
 
