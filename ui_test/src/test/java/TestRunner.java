@@ -9,5 +9,5 @@ import org.junit.runner.RunWith;
         publish = true)
 
 
-public class CucumberTestRunner {
+public class TestRunner {
 }
