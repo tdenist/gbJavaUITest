@@ -65,7 +65,7 @@ public class MyStepdefs {
     @And("я выбира в выпадающем меню у коллекции Удалить")
     public void clickDropdownMenu() {
             new CollectionsPage()
-                    .selectCollectionDropdownMenuOption("Удалить");
+                    .selectCollectionDropdownMenuOption("Delete");
     }
 
     @And("я подтверждаю удаление")
