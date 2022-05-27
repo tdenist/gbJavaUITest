@@ -12,13 +12,13 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class CollectionsPage {
 
-    private final static String collectionsGridLocator = "//div[@data-automation=\"StandardGrid_content\"]/div";
+    private final static String collectionsGridLocator = "//div[@data-automation=\"collections-body_folders\"]/div";
 
-    private final static String collectionDropdownMenuButtonLocator = "//button[@data-automation=\"ActionsDropdownMenu_icon_actions\"]";
+    private final static String collectionDropdownMenuButtonLocator = "//button[@data-automation=\"folder-card-menu_trigger\"]";
 
-    private final static String collectionDropdownMenuListLocator = "//div[@data-automation=\"StandardGrid_content\"]//div[@data-react-toolbox=\"menu\"]/ul/li/span";
+    private final static String collectionDropdownMenuListLocator = "//ul[@class = \"MuiList-root MuiMenu-list MuiList-padding\"]/li/div";
 
-    private final static String collectionPageSnackbarLocator = "//div[@data-automation = \"CollectionPage_snackbar\"]";
+    private final static String collectionPageSnackbarLocator = "//div[@data-automation = \"Snackbar_Alert\"]";
 
     private ElementsCollection collectionsInGridList = $$(By.xpath(collectionsGridLocator));
 
@@ -26,7 +26,7 @@ public class CollectionsPage {
 
     private ElementsCollection collectionDropdownMenu = $$(By.xpath(collectionDropdownMenuListLocator));
 
-    private SelenideElement createButton = $(By.xpath("//button[@data-track-label=\"createCollectionIcon\"]"));
+    private SelenideElement createButton = $(By.xpath("//div[contains(@class,\"MuiBox-root\")]//header//button"));
 
     private SelenideElement collectionPageSnackbar = $(By.xpath(collectionPageSnackbarLocator));
 
@@ -47,7 +47,7 @@ public class CollectionsPage {
 
     @Step("Выбрать пункт меню")
     public DialogFrame selectCollectionDropdownMenuOption(String menuOption){
-        collectionDropdownMenuButton.hover();
+        collectionDropdownMenuButton.click();
         /*
         actions
                 .moveToElement(collectionDropdownMenuButton)

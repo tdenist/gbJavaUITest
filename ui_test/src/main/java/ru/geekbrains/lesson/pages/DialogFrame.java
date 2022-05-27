@@ -10,11 +10,11 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class DialogFrame {
 
-    private SelenideElement inputFieldCollectionName = $(By.xpath("//input[@data-automation=\"CollectionTitleInputDialog_input-active\"]"));
+    private SelenideElement inputFieldCollectionName = $(By.xpath("//div[@role = \"dialog\"]//input"));
 
-    private SelenideElement createCollectionButton = $(By.xpath("//button[@data-automation=\"CollectionTitleInputDialog_submit_button-active\"]"));
+    private SelenideElement createCollectionButton = $(By.xpath("//div[@role = \"dialog\"]/div[contains(@class, \"MuiDialogActions-root\")]//button[@aria-label]"));
 
-    private SelenideElement deleteCollectionButton = $(By.xpath("//button[@data-automation=\"delete-dialog-submit\"]"));
+    private SelenideElement deleteCollectionButton = $(By.xpath("//div[@role = \"dialog\"]/div/button/span[1]"));
 
     @Step("Ввести название создаваемой коллекции")
     public DialogFrame inputCollectionName(String text){
